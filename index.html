@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeBrief · Your calm morning household brief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,500;0,9..144,700;1,9..144,500&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0e1419;
+            background-image:
+                radial-gradient(ellipse 100% 80% at 50% -20%, rgba(125, 180, 220, 0.22), transparent 55%),
+                radial-gradient(ellipse 70% 50% at 0% 100%, rgba(255, 198, 140, 0.08), transparent 45%),
+                radial-gradient(ellipse 60% 40% at 100% 80%, rgba(90, 140, 180, 0.1), transparent 40%),
+                linear-gradient(180deg, #0a1014 0%, #121a22 40%, #0e1419 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+            color: #c8d4de;
+        }
+
+        .ambient {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.4;
+            background-image:
+                linear-gradient(105deg, transparent 40%, rgba(255, 255, 255, 0.02) 50%, transparent 60%);
+            background-size: 200% 100%;
+            animation: sheen 18s ease-in-out infinite;
+        }
+
+        @keyframes sheen {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .orb {
+            position: fixed;
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            filter: blur(72px);
+            opacity: 0.35;
+        }
+
+        .orb.sun {
+            top: -100px;
+            right: -40px;
+            background: radial-gradient(circle, rgba(255, 210, 150, 0.55) 0%, transparent 70%);
+        }
+
+        .orb.mist {
+            bottom: -120px;
+            left: -60px;
+            background: radial-gradient(circle, rgba(100, 160, 200, 0.45) 0%, transparent 70%);
+        }
+
+        .container {
+            background: linear-gradient(165deg, rgba(22, 32, 42, 0.94) 0%, rgba(14, 22, 30, 0.97) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 22px;
+            border: 1px solid rgba(140, 180, 210, 0.22);
+            box-shadow:
+                0 0 0 1px rgba(255, 255, 255, 0.04) inset,
+                0 28px 64px rgba(0, 0, 0, 0.45),
+                0 0 80px rgba(100, 150, 190, 0.06);
+            max-width: 600px;
+            width: 100%;
+            padding: 40px 34px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .container::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 28px;
+            right: 28px;
+            height: 2px;
+            border-radius: 0 0 3px 3px;
+            background: linear-gradient(90deg, transparent, rgba(180, 210, 235, 0.5), rgba(255, 200, 150, 0.45), rgba(180, 210, 235, 0.5), transparent);
+            opacity: 0.9;
+        }
+
+        .app-mark {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            line-height: 1;
+            background: linear-gradient(145deg, rgba(100, 150, 190, 0.2) 0%, rgba(255, 200, 150, 0.12) 100%);
+            border: 1px solid rgba(160, 200, 230, 0.35);
+            border-radius: 22px;
+            box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+        }
+
+        h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 2.45rem;
+            font-weight: 700;
+            font-optical-sizing: auto;
+            letter-spacing: -0.02em;
+            margin-bottom: 6px;
+            line-height: 1.12;
+            color: #f2f6fa;
+        }
+
+        h1 .accent {
+            background: linear-gradient(110deg, #e8f4ff 0%, #b8d8f0 45%, #ffd8b0 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            color: #8aa8bc;
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 22px;
+        }
+
+        .badge {
+            background: rgba(100, 150, 190, 0.15);
+            border: 1px solid rgba(140, 180, 210, 0.35);
+            color: #b8d4ea;
+            padding: 7px 13px;
+            border-radius: 999px;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+        }
+
+        .badge.warm {
+            background: rgba(255, 190, 130, 0.1);
+            border-color: rgba(255, 200, 150, 0.35);
+            color: #e8c8a8;
+        }
+
+        .description {
+            text-align: left;
+            color: #9eb4c4;
+            line-height: 1.82;
+            font-size: 0.96rem;
+            margin-bottom: 20px;
+        }
+
+        .description strong {
+            color: #e4eef5;
+            font-weight: 600;
+        }
+
+        .panel {
+            text-align: left;
+            background: rgba(0, 0, 0, 0.22);
+            border-radius: 16px;
+            border: 1px solid rgba(120, 160, 195, 0.2);
+            padding: 18px 20px;
+            margin-bottom: 20px;
+        }
+
+        .panel h3 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #c8e0f4;
+            margin-bottom: 12px;
+        }
+
+        .panel ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .panel li {
+            color: #9eb4c4;
+            padding: 6px 0 6px 26px;
+            position: relative;
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .panel li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.65em;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #8ec8ff, #ffc896);
+            opacity: 0.85;
+        }
+
+        .features {
+            text-align: left;
+            margin-bottom: 26px;
+        }
+
+        .features h3 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.22rem;
+            font-weight: 700;
+            color: #a8d4c8;
+            margin-bottom: 12px;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .features li {
+            color: #9eb4c4;
+            padding: 7px 0 7px 28px;
+            position: relative;
+            font-size: 0.93rem;
+            line-height: 1.58;
+        }
+
+        .features li::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: rgba(180, 210, 235, 0.55);
+            font-weight: 600;
+        }
+
+        .app-store-button {
+            display: inline-block;
+            background: linear-gradient(145deg, #3a7ab8 0%, #2563a8 100%);
+            color: #fff;
+            padding: 15px 36px;
+            border-radius: 14px;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 700;
+            letter-spacing: 0.03em;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            box-shadow: 0 10px 28px rgba(40, 100, 160, 0.4);
+        }
+
+        .app-store-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 36px rgba(40, 100, 160, 0.5);
+            color: #fff;
+        }
+
+        .footer {
+            margin-top: 26px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(120, 160, 195, 0.18);
+            font-size: 0.82rem;
+            color: #6a8498;
+            font-weight: 500;
+        }
+
+        .footer a {
+            color: #a8c8e4;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+            color: #d4e8f8;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; }
+            .container { padding: 32px 22px; }
+            .app-mark { width: 88px; height: 88px; font-size: 2.1rem; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ambient" aria-hidden="true"></div>
+    <div class="orb sun" aria-hidden="true"></div>
+    <div class="orb mist" aria-hidden="true"></div>
+
+    <div class="container">
+        <div class="app-mark" role="img" aria-label="Home">⌂</div>
+        <h1><span class="accent">HomeBrief</span></h1>
+        <p class="subtitle">Know what everyone needs today</p>
+
+        <div class="badges">
+            <span class="badge">Free</span>
+            <span class="badge warm">Household</span>
+            <span class="badge">iPhone &amp; iPad</span>
+            <span class="badge warm">4+</span>
+        </div>
+
+        <div class="description">
+            <p>Get a <strong>clear morning household brief</strong> in one place. HomeBrief helps you see who is leaving, what each person should take, which papers still need a signature, and what might slow the household down—<strong>before</strong> anyone walks out the door. It is built for calmer mornings: less scrambling, fewer forgotten items, and a steadier start to the day.</p>
+        </div>
+
+        <div class="panel">
+            <h3>At a glance</h3>
+            <ul>
+                <li>Daily brief with departures, items to pack, signatures, and time-sensitive prep.</li>
+                <li>Simple per-person cards: timing, notes, and readiness at a glance.</li>
+                <li>Mark items as ready, packed, signed, bought, waiting, or no longer needed.</li>
+                <li>Evening prep hooks so tonight sets up a smoother tomorrow.</li>
+            </ul>
+        </div>
+
+        <div class="features">
+            <h3>What sets it apart</h3>
+            <ul>
+                <li><strong>Chaos Morning Mode</strong> turns the day into a practical briefing—not just another calendar.</li>
+                <li><strong>Friction Forecast</strong> highlights overlaps, missing items, and paperwork gaps early.</li>
+                <li><strong>Household readiness</strong> focuses on leaving home prepared, not only “organized on paper.”</li>
+                <li>Core experience stays <strong>fully usable</strong> without locking essentials behind a paywall.</li>
+            </ul>
+        </div>
+
+        <a href="https://apps.apple.com/us/app/homebrief/id6761920710?uo=4" class="app-store-button" target="_blank" rel="noopener noreferrer">
+            Download on the App Store
+        </a>
+
+        <div class="footer">
+            <a href="privacy.html">Privacy Policy</a> · HomeBrief
+        </div>
+    </div>
+</body>
+
+</html>

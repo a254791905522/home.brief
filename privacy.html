@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy · HomeBrief</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0e1419;
+            background-image:
+                radial-gradient(ellipse 90% 70% at 50% -15%, rgba(125, 180, 220, 0.18), transparent 50%),
+                linear-gradient(180deg, #0a1014 0%, #121a22 50%, #0e1419 100%);
+            color: #c8d4de;
+            line-height: 1.72;
+            min-height: 100vh;
+        }
+
+        .wrap {
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 40px 22px 72px;
+        }
+
+        header {
+            padding-bottom: 28px;
+            margin-bottom: 32px;
+            border-bottom: 1px solid rgba(140, 180, 210, 0.22);
+        }
+
+        .eyebrow {
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            color: #8aa8bc;
+            margin-bottom: 10px;
+        }
+
+        header h1 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: clamp(1.85rem, 4.5vw, 2.35rem);
+            font-weight: 700;
+            color: #f2f6fa;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+        }
+
+        header .product {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #a8c8e4;
+        }
+
+        header .stamp {
+            display: inline-block;
+            margin-top: 16px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: #b8e4d0;
+            background: rgba(100, 180, 140, 0.12);
+            border: 1px solid rgba(120, 200, 160, 0.28);
+        }
+
+        .lede {
+            font-size: 1.02rem;
+            color: #9eb4c4;
+            margin-bottom: 36px;
+            padding: 20px 22px;
+            background: rgba(0, 0, 0, 0.22);
+            border-radius: 16px;
+            border: 1px solid rgba(120, 160, 195, 0.18);
+        }
+
+        article {
+            margin-bottom: 32px;
+        }
+
+        article h2 {
+            font-family: 'Fraunces', Georgia, serif;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #e4eef5;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        article h2 .num {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            color: #0e1419;
+            background: linear-gradient(135deg, #b8d8f0, #ffd8b0);
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        article p {
+            font-size: 0.96rem;
+            color: #9eb4c4;
+            margin-bottom: 12px;
+        }
+
+        article p:last-child {
+            margin-bottom: 0;
+        }
+
+        article strong {
+            color: #dce6ee;
+            font-weight: 600;
+        }
+
+        .note {
+            margin-top: 14px;
+            padding: 14px 16px;
+            border-left: 3px solid rgba(180, 210, 235, 0.5);
+            background: rgba(30, 44, 56, 0.6);
+            border-radius: 0 12px 12px 0;
+            font-size: 0.9rem;
+            color: #8aa8bc;
+        }
+
+        .pill-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .pill {
+            font-size: 0.78rem;
+            font-weight: 600;
+            padding: 6px 12px;
+            border-radius: 999px;
+            background: rgba(100, 150, 190, 0.12);
+            border: 1px solid rgba(140, 180, 210, 0.25);
+            color: #b0cce0;
+        }
+
+        nav.back {
+            margin-top: 44px;
+            padding-top: 24px;
+            border-top: 1px solid rgba(140, 180, 210, 0.18);
+            text-align: center;
+        }
+
+        nav.back a {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #e4eef5;
+            text-decoration: none;
+            padding: 12px 26px;
+            border-radius: 12px;
+            border: 1px solid rgba(160, 200, 230, 0.35);
+            background: linear-gradient(145deg, rgba(58, 122, 184, 0.35) 0%, rgba(37, 99, 168, 0.2) 100%);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        nav.back a:hover {
+            transform: translateY(-1px);
+            border-color: rgba(200, 220, 240, 0.45);
+        }
+
+        @media (max-width: 640px) {
+            .wrap { padding: 28px 16px 56px; }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrap">
+        <header>
+            <p class="eyebrow">Legal</p>
+            <h1>Privacy Policy</h1>
+            <p class="product">HomeBrief</p>
+            <span class="stamp">Effective April 2026</span>
+        </header>
+
+        <p class="lede">This document explains how HomeBrief handles information when you use the iOS and iPadOS application distributed on Apple’s App Store. It is written for anyone in your household who uses the app and should be read together with Apple’s own privacy materials for your device and account.</p>
+
+        <article>
+            <h2><span class="num">A</span> Who this covers</h2>
+            <p>The policy applies only to the <strong>HomeBrief</strong> mobile app on supported Apple devices. It does not describe other software, beta builds, or future products unless those releases include an updated policy inside the app or on this page.</p>
+        </article>
+
+        <article>
+            <h2><span class="num">B</span> Data the developer does not collect</h2>
+            <p>HomeBrief is labeled on the App Store with <strong>no data collection</strong> in the categories Apple asks developers to disclose there. In practical terms, the app is not designed to gather analytics identifiers, contact lists, precise location histories, or similar datasets for transmission to the developer through the app itself.</p>
+            <div class="note">App Store labels can change when a version is published. Always check the latest <strong>App Privacy</strong> section on the HomeBrief store page before you update.</div>
+        </article>
+
+        <article>
+            <h2><span class="num">C</span> What may stay on your device</h2>
+            <p>Household briefs, checklists, notes, and readiness states you enter are expected to behave like <strong>ordinary on-device content</strong>: they exist so the app can show your morning overview and evening prep. Unless a future release clearly states otherwise in its description and privacy details, that material should remain under your control on the device storage Apple provides.</p>
+            <div class="pill-row">
+                <span class="pill">Local brief content</span>
+                <span class="pill">Readiness flags</span>
+                <span class="pill">App preferences</span>
+            </div>
+        </article>
+
+        <article>
+            <h2><span class="num">D</span> Apple’s role</h2>
+            <p>Downloading, updating, or signing in with an Apple ID involves processing by <strong>Apple Inc.</strong> under Apple’s terms, including billing, security, and device telemetry that Apple manages. HomeBrief does not replace or override those systems.</p>
+        </article>
+
+        <article>
+            <h2><span class="num">E</span> Younger users</h2>
+            <p>The App Store age band for HomeBrief is <strong>4+</strong>. Parents and guardians should rely on Apple’s Family Sharing, Screen Time, and purchase controls to decide who may install or use the app on family devices.</p>
+        </article>
+
+        <article>
+            <h2><span class="num">F</span> Keeping this text current</h2>
+            <p>When the app or platform rules change in a way that affects privacy expectations, this page will be revised and the <strong>Effective</strong> date above will move forward. Continued use after an update means you accept the revised wording except where local law requires a different process.</p>
+            <p>If you need help with the product, use the standard <strong>App Store support</strong> path for the listing (for example ratings, reviews, or the support link Apple surfaces for that app)—this page intentionally does not include external sites or personal contact channels.</p>
+        </article>
+
+        <nav class="back">
+            <a href="index.html">Back to overview</a>
+        </nav>
+    </div>
+</body>
+
+</html>
